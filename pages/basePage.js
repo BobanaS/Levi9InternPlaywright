@@ -15,4 +15,6 @@ export class BasePage {
     getApplicationUrl() {
         return this.APP_URL
     }
+
+   
 }

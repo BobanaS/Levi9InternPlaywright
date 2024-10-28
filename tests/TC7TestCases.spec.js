@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 import { LoginPage } from '../pages/loginPage';
+import { navbarPage } from '../pages/navbarPage';
 import { testCasesPage } from '../pages/testCasesPage';
 
 /*
@@ -11,13 +12,13 @@ import { testCasesPage } from '../pages/testCasesPage';
 */
 test.describe("Test Case 7: Verify Test Cases Page", () => {
 
-    test("Verify Test Cases Page", async ({ page }) => {
+    test("Verify Test Cases Page", async ({page }) => {
 
         //npx playwright test -g "TC7TestCases.spec" --ui
 
         let loginPage = new LoginPage(page)
-        let testCasePage1 = new testCasesPage(page); // Instantiate ContactUsPage
-
+        let testCasePage1 = new testCasesPage(page)
+        let navBarPage= new navbarPage(page)
         //open application
         await loginPage.openApp()
 
@@ -28,8 +29,7 @@ test.describe("Test Case 7: Verify Test Cases Page", () => {
 
         // Click on 'Test Cases' button
 
-        await loginPage.testCases.click()
-
+await navBarPage.chooseOption(navBarPage.testCases)
         //Verify user is navigated to test cases page successfully
         await expect(testCasePage1.titleT).toBeVisible()
         await expect(testCasePage1.titleRedMessage).toBeVisible()

@@ -3,8 +3,7 @@ import { BasePage } from "./basePage";
 export class LoginPage extends BasePage {
     constructor(page) {
         super(page)
-        this.linkSingupLogin = page.getByRole("link", { name: " Signup / Login" })
-        this.homeImage= page.locator('img[src="/static/images/home/logo.png"]')
+        this.homeImage = page.locator('img[alt="Website for automation practice"]')
         this.inputLoginEmail = page.locator("#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > input[type=email]:nth-child(2)")
         this.inputPassword = page.locator("#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > input[type=password]:nth-child(3)")
         this.buttonLogin = page.getByRole("button", { "name": "Login" })
@@ -13,8 +12,10 @@ export class LoginPage extends BasePage {
         this.inputNameForSignup = page.getByPlaceholder("Name")
         this.inputEmalForSignup = page.locator("#form > div > div > div:nth-child(3) > div > form > input[type=email]:nth-child(3)")
         this.buttonSignup = page.getByRole("button", { "name": "Signup" })
-        this.contactUs = page.getByRole("link", { name: " Contact us" })
-        this.testCases=  page.getByRole('link', { name: 'Test Cases' }).nth(0)
+        this.subsEmail=page.locator('#susbscribe_email')
+        this.subsButton=page.locator('#subscribe')
+        this.subsMess=page.getByText('Subscription')
+        this.subsSuccMess=page.getByText('You have been successfully subscribed!')
     }
 
     async login(username, password) {
@@ -31,7 +32,7 @@ export class LoginPage extends BasePage {
     async delete() {
         await this.linkDelete.click()
     }
-    
+
     async signup(name, email) {
 
         await this.inputNameForSignup.fill(name)
@@ -81,5 +82,15 @@ export class LoginPage extends BasePage {
 
         await this.page.locator('input[id="mobile_number"]').fill(userData.mobile_number)
 
+    }
+
+    async scrool(){
+        await this.page.getByText('Subscription').scrollIntoViewIfNeeded();
+    }
+    async fillsubEmail(a){
+        await this.subsEmail.fill(a)
+    }
+    async clickSubsButton(){
+        await this.subsButton.click()
     }
 }

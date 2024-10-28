@@ -12,7 +12,7 @@ export class contactUsPage extends BasePage {
         this.submitButton = page.locator('[data-qa="submit-button"]')
         this.contactURL = "https://www.automationexercise.com/contact_us"
         this.messageS = page.locator('#contact-page')
-        const homeButton = page.locator('a.btn.btn-success', { hasText: 'Home' })
+        this.homeButton = page.locator('a.btn.btn-success', { hasText: 'Home' })
 
 
     }
@@ -25,27 +25,24 @@ export class contactUsPage extends BasePage {
 
         await this.message.fill(message)
 
-
+        await this.page.on('dialog', async dialog => {
+            dialog.accept();
+        })
         // Klikni na dugme za slanje
-        await this.submitButton.click();
-        await this.page.waitForTimeout(10000);  // Daje stranici dodatno vreme da osveži sadržaj
+        await this.submitButton.click()
 
 
     }
 
-    async acceptAlert() {
-        // Čekaj na dijalog da se prikaže
-        await this.page.keyboard.press('Enter');
-
-    }
-
-  
-    // Proveri da li je uspešna poruka vidljiva
-   
+    /* async acceptAlert() {
+         // Čekaj na dijalog da se prikaže
+         await this.page.keyboard.press('Enter');
+         await this.page.keyboard.press('Enter');
+ */
 
 
     async clickHomeButton() {
-       
-        await this.homeButton.click()
-    }
+
+    await this.homeButton.click()
+}
 }

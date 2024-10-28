@@ -1,6 +1,7 @@
 const { test, expect } = require('@playwright/test');
 import { contactUsPage } from '../pages/contactUsPage';
 import { LoginPage } from '../pages/loginPage'
+import { navbarPage } from '../pages/navbarPage';
 
 test.describe("Test Case 6: Contact Us Form", () => {
 
@@ -10,6 +11,7 @@ test.describe("Test Case 6: Contact Us Form", () => {
 
         let loginPage = new LoginPage(page)
         let contactUsPageInstance = new contactUsPage(page); // Instantiate ContactUsPage
+        let nabBarPage = new navbarPage(page)
 
         //open application
         await loginPage.openApp()
@@ -18,8 +20,7 @@ test.describe("Test Case 6: Contact Us Form", () => {
         await expect(page).toHaveURL(loginPage.getApplicationUrl())
 
         //click on Singup/Login link
-        await loginPage.contactUs.click()
-
+        await nabBarPage.chooseOption(nabBarPage.concactUs)
         //Verify 'GET IN TOUCH' is visiblee
         await expect(page.getByText("Get In Touch")).toBeVisible()
 
@@ -27,7 +28,7 @@ test.describe("Test Case 6: Contact Us Form", () => {
         await contactUsPageInstance.contactus("mirkic", "mirkic@ljl.com", "naziv", "poruka")
 
         //Click OK button
-        await expect(contactUsPageInstance.submitButton).toBeVisible({ timeout: 10000 })
+       // await expect(contactUsPageInstance.submitButton).toBeVisible({ timeout: 10000 })
         //await contactUsPageInstance.acceptAlert()
 
 
@@ -35,17 +36,9 @@ test.describe("Test Case 6: Contact Us Form", () => {
         await expect(contactUsPageInstance.messageS.getByText('Success! Your details have')).toBeVisible()
 
         // Povratak na početnu stranu
-        await contactUsPageInstance.clickOnHomeButton();
-        await contactUsPageInstance.waitForTimeout(10000);
-/*
-        //Click 'Home' button and verify that landed to home page successfully
-        await expect(contactUsPageInstance.homeButton).toBeVisible();
-
-        // Proveri da li ima tačan href atribut
-        await expect(contactUsPageInstance.homeButton).toHaveAttribute('href', '/')
-
+        await contactUsPageInstance.clickOnHomeButton;
         // Proveri da li sadrži tekst 'Home'
         await expect(contactUsPageInstance.homeButton).toHaveText('Home')
         await contactUsPageInstance.clickHomeButton()
-*/    })
+ })
 })
