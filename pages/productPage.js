@@ -1,3 +1,4 @@
+import { text } from "stream/consumers";
 import { BasePage } from "./basePage";
 
 export class productPage extends BasePage {
@@ -11,7 +12,10 @@ export class productPage extends BasePage {
         this.condition = this.productInformation.locator('p:has-text("Condition:")')
         this.brand = this.productInformation.locator('p:has-text("Brand:")')
         this.productURL = "https://www.automationexercise.com/product_details/1"
-    }
+        this.quantity=this.productInformation.locator('#quantity')
+        this.addToCartButton=page.getByRole("button",{name:" Add to cart"})
+        this.viewCart=page.getByText("View Cart")
+        }
 
     async checkURL() {
         const currentURL = await this.page.url(); // Dobijamo trenutni URL
@@ -32,6 +36,14 @@ export class productPage extends BasePage {
         }
         return b;
 
+    }
+    async increaseQuantity(a){
+        await this.quantity.fill(a.toString());
+
+    }
+
+    async addToCartAction(){
+        await this.addToCartButton.click()
     }
 
 }
