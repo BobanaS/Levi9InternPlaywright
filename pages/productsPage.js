@@ -16,6 +16,8 @@ export class productsPage extends BasePage {
         this.productsSearch = page.locator('.features_items')
         this.productLocator = this.productsSearch.locator('.col-sm-4')
         this.productsLocator = this.productLocator.locator('.productinfo.text-center')
+        this.mess= page.getByText(' Logged in as pera')
+
     }
     async checkURL() {
         const currentURL = await this.page.url(); // Dobijamo trenutni URL

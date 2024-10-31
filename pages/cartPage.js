@@ -7,7 +7,9 @@ export class cartPage extends BasePage{
         this.cartInfo=page.locator("#cart_info")
         this.product1=page.locator("#product-1")
         this.product2=page.locator("#product-2")
-        
+        this.reglog=page.getByRole("link",{name:"Register / Login"});
+       
+        this.continueOnCart=page.getByRole("button", {name:"Continue On Cart"})
     }
     
     async productInfo(a){
@@ -24,5 +26,13 @@ export class cartPage extends BasePage{
             b=true
         }
         return b
+
     }
+    async clickCheckOut(){
+        this.checkoutButton.click()
+    }
+    async clickRegister(){
+        this.reglog.click()
+    }
+
 }

@@ -11,7 +11,7 @@ export class navbarPage extends BasePage{
         this.concactUs = page.getByRole("link", { name: " Contact us" })
         this.linkSingupLogin = page.getByRole("link", { name: " Signup / Login" })
         this.testCases=  page.getByRole('link', { name: 'Test Cases' }).nth(0)
-
+        this.delete=page.getByRole('link',{name:" Delete Account"})
     }
     async chooseOption(a){
         await a.click()

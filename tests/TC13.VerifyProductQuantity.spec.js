@@ -30,8 +30,6 @@ test.describe("Test Case 13: Verify Product quantity in Cart", () => {
 
         await navBarPage.chooseOption(navBarPage.product)
 
-        //3. Verify that home page is visible successfully
-
         await expect (productsAlll.allProduct).toBeVisible()
         
         //4. Click 'View Product' for any product on home page

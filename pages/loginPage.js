@@ -16,6 +16,9 @@ export class LoginPage extends BasePage {
         this.subsButton=page.locator('#subscribe')
         this.subsMess=page.getByText('Subscription')
         this.subsSuccMess=page.getByText('You have been successfully subscribed!')
+        this.createMessage=page.getByText("ACCOUNT CREATED!")
+        this.continuButt= page.getByRole('link', { name: 'Continue' })
+
     }
 
     async login(username, password) {
@@ -92,5 +95,28 @@ export class LoginPage extends BasePage {
     }
     async clickSubsButton(){
         await this.subsButton.click()
+    }
+    async clickContinue(){
+        await this.continuButt.click()
+    }
+    async enterUserSignup() {
+
+        await this.page.locator('[id="id_gender2"]').click()
+        await this.page.fill('input[type="password"]', 'tvojaLozinka')
+        await this.page.selectOption('#days', '15')
+        await this.page.selectOption('#months', 'January')
+        await this.page.selectOption('#years', '2000')
+        await this.page.fill("#first_name", "Mario")
+        await this.page.fill("#last_name", "Marica")
+        await this.page.fill("#company", "Mario world")
+        await this.page.fill("#address1", "Marios address")
+        await this.page.fill("#address2", "Street May")
+        await this.page.selectOption("#country", "Australia")
+        await this.page.fill("#state", "State Aus")
+        await this.page.fill("#city", "Canvera")
+        await this.page.fill("#zipcode", "1123123")
+        await this.page.fill("#mobile_number", "1234567")
+        await this.page.locator('[data-qa="create-account"]').click()
+
     }
 }

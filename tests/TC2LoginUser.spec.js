@@ -27,7 +27,7 @@ test.describe("Test Case 2: Login User with correct email and password", () => {
         await loginPage.login("bibi@test.com", "nekasifra")
 
         //Verify that 'Logged in as username' is visible
-        await page.getByText(" Logged in as mirko").isVisible()
+        await page.getByText(" Logged in as bibi").isVisible()
 
         //logout 
         await loginPage.delete()

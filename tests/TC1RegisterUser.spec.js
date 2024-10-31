@@ -52,7 +52,7 @@ test.describe("Register User", () => {
         await expect(page.getByText("ACCOUNT CREATED!")).toBeVisible()
         await page.getByRole('link', { name: 'Continue' }).click()
         await expect (page.getByText(' Logged in as Mario')).toBeVisible()
-        await page.getByText(" Delete Account").click()
+        /await page.getByText(" Delete Account").click()
         await expect(page.getByText("Account Deleted!")).toBeVisible()
         await page.locator('[data-qa="continue-button"]').click();
 
